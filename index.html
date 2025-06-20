@@ -6,8 +6,11 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="top-bar">
-            <img src="img/logo.png" alt="Logo">
+    <div class="top-bar" style="display: flex; align-items: center;">
+    
+             <img class="logo" src="img/logo.png" alt="Logo">
+            <h1>daily crash report</h1>
+          
         <div class="mode-toggle" id="mode-toggle" style="cursor: pointer;">flou MODE ☀️</div>
     </div>
 
@@ -18,12 +21,14 @@
                 <div class="time" id="live-time"></div>
             </div>
             <div class="live-box" style="display: flex; flex-direction: column; gap: 0.3em; align-items: flex-start;">
+                <img id="mii-img" src="img/mii/1.png" alt="Mii" style="width: 80px; height: auto; margin-top: 10px;">
+                
                 <p class="live-title" style="margin: 0;">LIVE MALORI</p>
                 <p style="font-size: 2em; margin: 0;"><strong>ACTUELLEMENT</strong></p>
                 <p class="status" style="font-size: 1.7em; margin: 0;">
                     MALORI <span id="random-phrase"></span><span id="blink-underscore">_</span>
-                    </p><span style="font-size: 1em; color: #555;">(c'est faux mais bientôt ce sera vrai quand j'aurai un serveur et tout)</span>
                 </p>
+                <span style="font-size: 1em; color: #555;">(c'est faux mais bientôt ce sera vrai quand j'aurai un serveur et tout)</span>
                 
             </div>
 
@@ -54,9 +59,11 @@
                     100% { transform: translateY(0);}
                 }
             </style>
-
+            <div class="mii-box">
+                
+            </div>
             <div class="quote-box">
-                👉 dernière citation
+                dernière citation
             </div>
         </div>
 
@@ -73,15 +80,7 @@
         </div>
     </div>
     <script>
-        function updateTime() {
-            const now = new Date();
-            const h = String(now.getHours()).padStart(2, '0');
-            const m = String(now.getMinutes()).padStart(2, '0');
-            const s = String(now.getSeconds()).padStart(2, '0');
-            document.getElementById('live-time').textContent = `${h}:${m}:${s}`;
-        }
-        setInterval(updateTime, 1000);
-        updateTime();
+        
     </script>
     <script src="algo.js"></script>
 </body>

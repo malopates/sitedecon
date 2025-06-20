@@ -76,8 +76,8 @@ body {
 }
 
 
-.chieng {
-  width: 100px;
+.cat {
+  width: 1000px;
 }
 
 .top-bar {
@@ -109,7 +109,7 @@ body {
                     100% { transform: translateY(0);}
                 }
 
-.top-bar>*{
+.top-bar>.logo{
   height: 170px;
   margin:-50px;
   padding:0px;

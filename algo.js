@@ -43,15 +43,17 @@ function animate() {
                         el.style.visibility = (el.style.visibility === 'hidden') ? 'visible' : 'hidden';
                     }, 500);
 
-animate();
+                    animate();
 
-            const toggle = document.getElementById('mode-toggle');
-            let flou = false;
-            toggle.addEventListener('click', () => {
-            flou = !flou;
-            document.body.style.filter = flou ? 'blur(6px)' : 'none';
-            toggle.textContent = flou ? 'flou MODE 🌙' : 'flou MODE ☀️';
-            });
+                    
+const toggle = document.getElementById('mode-toggle');
+let flou = false;
+toggle.addEventListener('click', () => {
+    flou = !flou;
+    document.body.style.filter = flou ? 'blur(2px)' : 'none';
+    toggle.style.filter = 'none'; 
+    toggle.textContent = flou ? 'flou mode : désactivé ' : 'flou mode OUI';
+});
 
  function updateDateTime() {
                         const now = new Date();
@@ -69,4 +71,13 @@ animate();
                         document.getElementById('live-time').textContent = `${h}:${m}:${s}`;
                     }
                     setInterval(updateDateTime, 1000);
+
+                    
                     updateDateTime();
+
+                    const miiImg = document.getElementById('mii-img');
+                    function switchMii() {
+                        const n = Math.floor(Math.random() * 3)+1;
+                        miiImg.src = `img/mii/${n}.png`;
+                    }
+                    setInterval(switchMii, 100);
