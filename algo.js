@@ -45,3 +45,28 @@ function animate() {
 
 animate();
 
+            const toggle = document.getElementById('mode-toggle');
+            let flou = false;
+            toggle.addEventListener('click', () => {
+            flou = !flou;
+            document.body.style.filter = flou ? 'blur(6px)' : 'none';
+            toggle.textContent = flou ? 'flou MODE 🌙' : 'flou MODE ☀️';
+            });
+
+ function updateDateTime() {
+                        const now = new Date();
+                        const jours = ["DIMANCHE", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI"];
+                        const mois = ["JANV", "FÉV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DÉCE"];
+                        const jour = jours[now.getDay()];
+                        const date = now.getDate();
+                        const moisNom = mois[now.getMonth()];
+                        const dateStr = `${jour} ${date} <span style="color: orange;">${moisNom}</span>`;
+                        document.getElementById('live-date').innerHTML = dateStr;
+
+                        const h = String(now.getHours()).padStart(2, '0');
+                        const m = String(now.getMinutes()).padStart(2, '0');
+                        const s = String(now.getSeconds()).padStart(2, '0');
+                        document.getElementById('live-time').textContent = `${h}:${m}:${s}`;
+                    }
+                    setInterval(updateDateTime, 1000);
+                    updateDateTime();

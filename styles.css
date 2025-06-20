@@ -75,19 +75,42 @@ body {
   margin: 5px 0;
 }
 
-.cat-talk {
-  display: flex;
-  align-items: center;
-}
 
-.cat {
+.chieng {
   width: 100px;
 }
 
-.bubble {
-  background: white;
-  color: black;
-  padding: 10px;
-  margin-left: 10px;
-  border-radius: 10px;
+.top-bar {
+  background-image: url('img/fond.gif'); 
+  background-size: cover; 
+  background-repeat: no-repeat; 
+  height: 40px; 
+  font-size: 0.9em;
+}
+
+.fish-group {
+                    display: flex;
+                    gap: 10px;
+                    align-items: flex-end;
+                }
+                .fish {
+                    width: 60px;
+                    height: auto;
+                }
+                .bounce {
+                    animation: fish-bounce 1.2s infinite cubic-bezier(.68,-0.55,.27,1.55);
+                }
+                @keyframes fish-bounce {
+                    0%   { transform: translateY(0); }
+                    20%  { transform: translateY(-25px); }
+                    40%  { transform: translateY(0); }
+                    60%  { transform: translateY(10px);}
+                    80%  { transform: translateY(0);}
+                    100% { transform: translateY(0);}
+                }
+
+.top-bar>*{
+  height: 170px;
+  margin:-50px;
+  padding:0px;
 }
