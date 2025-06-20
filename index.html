@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Malo-meter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo">🎱 Malo-meter</div>
+        <div class="mode-toggle">flou MODE ☀️</div>
+    </div>
+
+    <div class="container">
+        <div class="left-panel">
+            <div class="date-time">
+                <div class="date" id="live-date"></div>
+                <div class="time" id="live-time"></div>
+                <script>
+                    function updateDateTime() {
+                        const now = new Date();
+                        const jours = ["DIMANCHE", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI"];
+                        const mois = ["JANV", "FÉV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DÉCE"];
+                        const jour = jours[now.getDay()];
+                        const date = now.getDate();
+                        const moisNom = mois[now.getMonth()];
+                        const dateStr = `${jour} ${date} <span style="color: orange;">${moisNom}</span>`;
+                        document.getElementById('live-date').innerHTML = dateStr;
+
+                        const h = String(now.getHours()).padStart(2, '0');
+                        const m = String(now.getMinutes()).padStart(2, '0');
+                        const s = String(now.getSeconds()).padStart(2, '0');
+                        document.getElementById('live-time').textContent = `${h}:${m}:${s}`;
+                    }
+                    setInterval(updateDateTime, 1000);
+                    updateDateTime();
+                </script>
+            </div>
+            <div class="live-box" style="display: flex; flex-direction: column; gap: 0.3em; align-items: flex-start;">
+                <p class="live-title" style="margin: 0;">🔴 LIVE MALORI</p>
+                <p style="font-size: 2em; margin: 0;"><strong>ACTUELLEMENT</strong></p>
+                <p class="status" style="font-size: 1.7em; margin: 0;">
+                    MALORI <span id="random-phrase"></span><span id="blink-underscore">_</span>
+                    </p><span style="font-size: 1em; color: #555;">(c'est faux mais bientôt ce sera vrai quand j'aurai un serveur et tout)</span>
+                </p>
+                
+            </div>
+
+            <div class="fish-group">
+                <img src="img/poasson.webp" class="fish bounce" alt="Poisson rouge 1" style="animation-delay: 0s;">
+                <img src="img/poasson.webp" class="fish bounce" alt="Poisson rouge 3984" style="animation-delay: 0.3s;">
+                <img src="img/poasson.webp" class="fish bounce" alt="Poisson rouge 3" style="animation-delay: 0.6s;">
+            </div>
+            <style>
+                .fish-group {
+                    display: flex;
+                    gap: 10px;
+                    align-items: flex-end;
+                }
+                .fish {
+                    width: 60px;
+                    height: auto;
+                }
+                .bounce {
+                    animation: fish-bounce 1.2s infinite cubic-bezier(.68,-0.55,.27,1.55);
+                }
+                @keyframes fish-bounce {
+                    0%   { transform: translateY(0); }
+                    20%  { transform: translateY(-25px); }
+                    40%  { transform: translateY(0); }
+                    60%  { transform: translateY(10px);}
+                    80%  { transform: translateY(0);}
+                    100% { transform: translateY(0);}
+                }
+            </style>
+
+            <div class="quote-box">
+                👉 dernière citation
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="mood">mood 😔</div>
+            <div class="daily-fact">daily fact</div>
+            <div class="logs">
+                <div class="log-box"></div>
+                <div class="log-box"></div>
+            </div>
+            <div class="cat-talk">
+                <img src="img/chat.png" class="cat" alt="Chat" style="width: 200px; height: auto; position: absolute; left: 0%; top: 0; transform: translateY(7%); z-index: 10; pointer-events: none;">
+                <div id="bubble-container"></div>
+            </div>
+            <div class="now-playing">now playing</div>
+        </div>
+    </div>
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('live-time').textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateTime, 1000);
+        updateTime();
+    </script>
+    <script src="algo.js"></script>
+</body>
+</html>

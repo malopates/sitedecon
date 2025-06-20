@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
+
+.top-bar {
+  background: #ff5522;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  height: calc(100vh - 50px);
+}
+
+.left-panel, .right-panel {
+  flex: 1;
+  padding: 20px;
+  position: relative;
+}
+
+.left-panel {
+  background: url('https://upload.wikimedia.org/wikipedia/commons/6/68/Topographic_Map_Background.png') no-repeat center;
+  background-size: cover;
+}
+
+.date-time {
+  font-size: 2em;
+}
+
+.live-box {
+  background: #ff5522;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.fish-group {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.fish {
+  width: 50px;
+  transform: rotate(20deg);
+}
+
+.quote-box {
+  border: 2px solid #ff5522;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.right-panel {
+  background: #1a1a1a;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mood, .daily-fact, .now-playing {
+  background: #552222;
+  padding: 10px;
+  font-size: 1.2em;
+}
+
+.logs .log-box {
+  background: #333;
+  height: 40px;
+  margin: 5px 0;
+}
+
+.cat-talk {
+  display: flex;
+  align-items: center;
+}
+
+.cat {
+  width: 100px;
+}
+
+.bubble {
+  background: white;
+  color: black;
+  padding: 10px;
+  margin-left: 10px;
+  border-radius: 10px;
+}
