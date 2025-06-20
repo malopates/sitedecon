@@ -2,13 +2,22 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Malo-meter</title>
+    <title>daily crash report</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="top-bar">
-        <div class="logo">🎱 Malo-meter</div>
-        <div class="mode-toggle">flou MODE ☀️</div>
+        <div class="logo">🎱</div>
+        <div class="mode-toggle" id="mode-toggle" style="cursor: pointer;">flou MODE ☀️</div>
+        <script>
+            const toggle = document.getElementById('mode-toggle');
+            let flou = false;
+            toggle.addEventListener('click', () => {
+            flou = !flou;
+            document.body.style.filter = flou ? 'blur(6px)' : 'none';
+            toggle.textContent = flou ? 'flou MODE 🌙' : 'flou MODE ☀️';
+            });
+        </script>
     </div>
 
     <div class="container">
