@@ -4,80 +4,88 @@ function animate() {
         const dx = (Math.random() - 0.5) * 2;
         const dy = (Math.random() - 0.5) * 2;
         el.style.position = 'relative';
-        el.style.left = `${dx}px`;
-        el.style.top = `${dy}px`;
+        el.style.transform = `translate(${dx}px, ${dy}px)`;
     });
-    setTimeout(animate, 1);
+    requestAnimationFrame(animate);
 }
 
 
-                    const phrases = [
-                        "mange des céréales",
-                        "regarde la pluie",
-                        "écoute de la musique",
-                        "danse dans la cuisine",
-                        "joue avec un chat",
-                        "dessine un poisson",
-                        "boit du café",
-                        "se noie"
-                    ];
 
-                    function typeWriter(text, i = 0) {
-                        const el = document.getElementById('random-phrase');
-                        if (i === 0) el.textContent = '';
-                        if (i < text.length) {
-                            el.textContent += text.charAt(i);
-                            setTimeout(() => typeWriter(text, i + 1), 60);
-                        }
-                    }
+setInterval(() => {
+    const el = document.getElementById('blink-underscore');
+    if (el) {
+        el.style.visibility = (el.style.visibility === 'hidden') ? 'visible' : 'hidden';
+    }
+}, 500);
 
-                    function setRandomPhrase() {
-                        const idx = Math.floor(Math.random() * phrases.length);
-                        typeWriter(phrases[idx]);
-                    }
+animate();
 
-                    setRandomPhrase();
-
-                    setInterval(() => {
-                        const el = document.getElementById('blink-underscore');
-                        el.style.visibility = (el.style.visibility === 'hidden') ? 'visible' : 'hidden';
-                    }, 500);
-
-                    animate();
-
-                    
 const toggle = document.getElementById('mode-toggle');
 let flou = false;
-toggle.addEventListener('click', () => {
-    flou = !flou;
-    document.body.style.filter = flou ? 'blur(2px)' : 'none';
-    toggle.style.filter = 'none'; 
-    toggle.textContent = flou ? 'flou mode : désactivé ' : 'flou mode OUI';
-});
+if (toggle) {
+    toggle.addEventListener('click', () => {
+        flou = !flou;
+        document.body.style.filter = flou ? 'blur(2px)' : 'none';
+        toggle.style.filter = 'none';
+        toggle.textContent = flou ? ' remettre les lunettes' : 'retirer les lunettes';
+    });
+}
 
- function updateDateTime() {
-                        const now = new Date();
-                        const jours = ["DIMANCHE", "LUNDI", "MARDI", "MERCREDI", "JEUDI", "VENDREDI", "SAMEDI"];
-                        const mois = ["JANV", "FÉV", "MARS", "AVRIL", "MAI", "JUIN", "JUIL", "AOÛT", "SEPT", "OCT", "NOV", "DÉCE"];
-                        const jour = jours[now.getDay()];
-                        const date = now.getDate();
-                        const moisNom = mois[now.getMonth()];
-                        const dateStr = `${jour} ${date} <span style="color: orange;">${moisNom}</span>`;
-                        document.getElementById('live-date').innerHTML = dateStr;
 
-                        const h = String(now.getHours()).padStart(2, '0');
-                        const m = String(now.getMinutes()).padStart(2, '0');
-                        const s = String(now.getSeconds()).padStart(2, '0');
-                        document.getElementById('live-time').textContent = `${h}:${m}:${s}`;
-                    }
-                    setInterval(updateDateTime, 1000);
+const miiImg = document.getElementById('mii-img');
+function switchMii() {
+    if (miiImg && !muted) {
+        const n = Math.floor(Math.random() * 3) + 1;
+        miiImg.src = `img/mii/${n}.png`;
+    }
+}
+setInterval(switchMii, 100);
 
-                    
-                    updateDateTime();
+const chatImg = document.getElementById('chat-img');
+if (chatImg) {
+    let isDragging = false;
+    let offsetX = 0, offsetY = 0;
 
-                    const miiImg = document.getElementById('mii-img');
-                    function switchMii() {
-                        const n = Math.floor(Math.random() * 3)+1;
-                        miiImg.src = `img/mii/${n}.png`;
-                    }
-                    setInterval(switchMii, 100);
+    chatImg.style.position = 'absolute';
+    chatImg.style.cursor = 'grab';
+
+    chatImg.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        offsetX = e.clientX - chatImg.offsetLeft;
+        offsetY = e.clientY - chatImg.offsetTop;
+        chatImg.style.cursor = 'grabbing';
+        document.body.style.userSelect = 'none';
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            chatImg.style.left = (e.clientX - offsetX) + 'px';
+            chatImg.style.top = (e.clientY - offsetY) + 'px';
+        }
+    });
+
+    document.addEventListener('mouseup', function() {
+        if (isDragging) {
+            isDragging = false;
+            chatImg.style.cursor = 'grab';
+            document.body.style.userSelect = '';
+        }
+    });
+}
+
+let muted = false;
+const muteBtn = document.getElementById('mute-btn');
+const speechBubble = document.querySelector('.speech-bubble');
+if (muteBtn) {
+    muteBtn.onclick = function() {
+        muted = !muted;
+        // Change button content to use mute.png or unmute.png
+        const imgSrc = muted ? 'img/unmute.png' : 'img/mute.png';
+        this.innerHTML = `<img src="${imgSrc}" alt="${muted ? 'Unmute' : 'Mute'}" style="height:1em;vertical-align:middle;">`;
+        if (speechBubble) {
+            speechBubble.style.display = muted ? 'none' : '';
+        }
+    };
+    // Set initial icon
+    muteBtn.innerHTML = `<img src="img/mute.png" alt="Mute" style="height:1em;vertical-align:middle;">`;
+}
