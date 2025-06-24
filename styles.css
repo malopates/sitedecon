@@ -19,12 +19,25 @@ body {
   flex-direction: row;
 }
 
-.stats{
+.stats {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 16px;
   width: 100%;
+}
+
+.stats .stat-large-vertical {
+  grid-row: span 2;
+}
+
+.stats .stat-large-horizontal {
+  grid-column: span 2;
+}
+
+.stats .stat-large-both {
+  grid-column: span 2;
+  grid-row: span 2;
 }
 
 
@@ -49,13 +62,15 @@ width: fit-content;
 .stats > * {
   border: 2px solid #ff5522;
   padding: 30px;
-  margin:10px;
+  margin: 10px;
   font-size: 1.2em;
-
+  width: 100%;
+  box-sizing: border-box;
 }
 
-.stats{
+.stats {
   border: 2px solid red;
+  grid-auto-columns: minmax(0, auto);
 }
 
 .logs .log-box {

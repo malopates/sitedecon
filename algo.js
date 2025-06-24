@@ -85,9 +85,16 @@ fishEls.forEach(fish => {
 });
 fishEls.forEach(fish => {
     let direction = Math.random() < 0.5 ? 1 : -1;
-    let speed = 1 + Math.random() * 0.5;
+    let speed = 0.5 + Math.random() * 0.1;
     let x = parseFloat(fish.style.left) || 0;
+    let y = parseFloat(fish.style.top) || 0;
+    let baseY = y;
     let maxX = window.innerWidth - fish.offsetWidth;
+    let angle = 0;
+    let angleStep = 0.01 + Math.random() * 0.01;
+    let angleAmplitude = 10 + Math.random() * 3;
+    let verticalStep = 0.003 + Math.random() * 0.002; 
+    let verticalAmplitude = 12 + Math.random() * 30; // pixels
 
     function moveFish() {
         x += direction * speed;
@@ -99,6 +106,20 @@ fishEls.forEach(fish => {
             fish.style.transform = 'scaleX(1)';
         }
         fish.style.left = `${x}px`;
+
+        // Swimming rotation
+        angle += angleStep;
+        const rotate = Math.sin(angle) * angleAmplitude;
+        // Combine scale and rotate
+        const scale = direction === 1 ? -1 : 1;
+
+        // Vertical movement
+        let verticalAngle = angle * verticalStep / angleStep;
+        let yOffset = Math.sin(verticalAngle) * verticalAmplitude;
+        fish.style.top = `${baseY + yOffset}px`;
+
+        fish.style.transform = `scaleX(${scale}) rotate(${rotate}deg)`;
+
         requestAnimationFrame(moveFish);
     }
 
