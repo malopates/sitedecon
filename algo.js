@@ -1,24 +1,6 @@
-const containers = Array.from(document.querySelectorAll('img.dog'));
-function animate() {
-    containers.forEach(el => {
-        const dx = (Math.random() - 0.5) * 2;
-        const dy = (Math.random() - 0.5) * 2;
-        el.style.position = 'relative';
-        el.style.transform = `translate(${dx}px, ${dy}px)`;
-    });
-    requestAnimationFrame(animate);
-}
 
 
 
-setInterval(() => {
-    const el = document.getElementById('blink-underscore');
-    if (el) {
-        el.style.visibility = (el.style.visibility === 'hidden') ? 'visible' : 'hidden';
-    }
-}, 500);
-
-animate();
 
 const toggle = document.getElementById('mode-toggle');
 let flou = false;
@@ -41,33 +23,33 @@ function switchMii() {
 }
 setInterval(switchMii, 100);
 
-const chatImg = document.getElementById('chat-img');
-if (chatImg) {
+const treat = document.getElementById('treat');
+if (treat) {
     let isDragging = false;
     let offsetX = 0, offsetY = 0;
 
-    chatImg.style.position = 'absolute';
-    chatImg.style.cursor = 'grab';
+    treat.style.position = 'absolute';
+    treat.style.cursor = 'grab';
 
-    chatImg.addEventListener('mousedown', function(e) {
+    treat.addEventListener('mousedown', function(e) {
         isDragging = true;
-        offsetX = e.clientX - chatImg.offsetLeft;
-        offsetY = e.clientY - chatImg.offsetTop;
-        chatImg.style.cursor = 'grabbing';
+        offsetX = e.clientX - treat.offsetLeft;
+        offsetY = e.clientY - treat.offsetTop;
+        treat.style.cursor = 'grabbing';
         document.body.style.userSelect = 'none';
     });
 
     document.addEventListener('mousemove', function(e) {
         if (isDragging) {
-            chatImg.style.left = (e.clientX - offsetX) + 'px';
-            chatImg.style.top = (e.clientY - offsetY) + 'px';
+            treat.style.left = (e.clientX - offsetX) + 'px';
+            treat.style.top = (e.clientY - offsetY) + 'px';
         }
     });
 
     document.addEventListener('mouseup', function() {
         if (isDragging) {
             isDragging = false;
-            chatImg.style.cursor = 'grab';
+            treat.style.cursor = 'grab';
             document.body.style.userSelect = '';
         }
     });
@@ -101,10 +83,9 @@ fishEls.forEach(fish => {
     fish.style.left = `${x}px`;
     fish.style.top = `${y}px`;
 });
-
 fishEls.forEach(fish => {
     let direction = Math.random() < 0.5 ? 1 : -1;
-    let speed = 1 + Math.random() * 2;
+    let speed = 1 + Math.random() * 0.5;
     let x = parseFloat(fish.style.left) || 0;
     let maxX = window.innerWidth - fish.offsetWidth;
 
@@ -112,15 +93,15 @@ fishEls.forEach(fish => {
         x += direction * speed;
         if (x <= 0) {
             direction = 1;
-            fish.style.transform = 'scaleX(1)';
+            fish.style.transform = 'scaleX(-1)';
         } else if (x >= maxX) {
             direction = -1;
-            fish.style.transform = 'scaleX(-1)';
+            fish.style.transform = 'scaleX(1)';
         }
         fish.style.left = `${x}px`;
         requestAnimationFrame(moveFish);
     }
-    // Flip image if going left
-    fish.style.transform = direction === 1 ? 'scaleX(1)' : 'scaleX(-1)';
+
+    fish.style.transform = direction === 1 ? 'scaleX(-1)' : 'scaleX(1)';
     moveFish();
 });

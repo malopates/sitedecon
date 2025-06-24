@@ -13,33 +13,26 @@ body {
   font-weight: bold;
 }
 
-.container {
-  display: flex;
-  height: calc(100vh - 50px);
+
+.container{
+  display:flex;
+  flex-direction: row;
 }
 
-.left-panel, .right-panel {
-  flex: 1;
-  padding: 20px;
-  position: relative;
-}
-
-.left-panel {
-  background: url('https://upload.wikimedia.org/wikipedia/commons/6/68/Topographic_Map_Background.png') no-repeat center;
-  background-size: cover;
+.stats{
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 16px;
+  width: 100%;
 }
 
 
-.live-box {
-  background: #ff5522;
-  padding: 10px;
-  margin-top: 20px;
-}
 
 
 .fish {
-  width: 80px;
-  height: 60px;
+  width: 180px;
+  height: 160px;
   z-index: 1;
   pointer-events: none;
   position: absolute;
@@ -49,19 +42,20 @@ body {
   background-color: #ff5522;
   padding: 10px;
   margin-top: 20px;
+width: fit-content;
 }
 
-.right-panel {
-  background: #1a1a1a;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
 
-.mood, .daily-fact, .now-playing {
+.stats > * {
   border: 2px solid #ff5522;
-  padding: 10px;
+  padding: 30px;
+  margin:10px;
   font-size: 1.2em;
+
+}
+
+.stats{
+  border: 2px solid red;
 }
 
 .logs .log-box {
