@@ -8,7 +8,7 @@
 <body>
     <div class="top-bar" style="display: flex; align-items: center;">
 
-             <img class="logo" src="img/logo.png" alt="Logo">
+             <img class="logo" id="logo" src="img/logo.png" alt="Logo">
             <h1>daily crash report</h1>
 
         <label onclick="window.location.href='page1.html'">Page 1</label>
@@ -19,6 +19,14 @@
 
 
     <div class="container">
+
+        
+            <img src="img/poasson.webp" class="fish" id="fish" alt="Poisson rouge 1" >
+            <img src="img/poasson.webp" class="fish" id="fish" alt="Poisson rouge 2" >
+            <img src="img/poasson.webp" class="fish" id="fish" alt="Poisson rouge 3" >
+           
+
+
         <div class="left-panel">
            
                
@@ -42,33 +50,7 @@
                 
 
 
-            <div class="fish-group">
-                <img src="img/poasson.webp" class="fish bounce" alt="Poisson rouge 1" style="animation-delay: 0s;">
-                <img src="img/poasson.webp" class="fish bounce" alt="Poisson rouge 3984" style="animation-delay: 0.3s;">
-                <img src="img/poasson.webp" class="fish bounce" alt="Poisson rouge 3" style="animation-delay: 0.6s;">
-            </div>
-            <style>
-                .fish-group {
-                    display: flex;
-                    gap: 10px;
-                    align-items: flex-end;
-                }
-                .fish {
-                    width: 60px;
-                    height: auto;
-                }
-                .bounce {
-                    animation: fish-bounce 1.2s infinite cubic-bezier(.68,-0.55,.27,1.55);
-                }
-                @keyframes fish-bounce {
-                    0%   { transform: translateY(0); }
-                    20%  { transform: translateY(-25px); }
-                    40%  { transform: translateY(0); }
-                    60%  { transform: translateY(10px);}
-                    80%  { transform: translateY(0);}
-                    100% { transform: translateY(0);}
-                }
-            </style>
+            
             <div class="mii-box">
                 
             </div>
@@ -78,6 +60,8 @@
         
         </div>
 
+
+
         <div class="right-panel">
             <div class="mood">mood 😔</div>
             <div class="daily-fact">daily fact</div>
@@ -86,7 +70,8 @@
                 <div class="log-box"></div>
             </div>
             <div class="cat-talk">
-                <img src="img/chieng.png" class="cat" alt="Chieng" style="width: 200px; height: auto; position: absolute; left: 0%; top: 0; transform: translateY(7%); z-index: 10; pointer-events: none;">
+                <img src="img/chieng.png" class="dog" id="dog" alt="Chieng" style="width: 200px; height: auto; position: absolute; left: 0%; top: 0; transform: translateY(7%); z-index: 10; pointer-events: none;">
+               
                 <img src="img/treat.png" id="chat-img" alt="Chat" style="width: 120px; height: auto; margin-left: 40px;">
                 <div class="now-playing">now playing</div>
         </div>

@@ -1,4 +1,4 @@
-const containers = Array.from(document.querySelectorAll('img.cat'));
+const containers = Array.from(document.querySelectorAll('img.dog'));
 function animate() {
     containers.forEach(el => {
         const dx = (Math.random() - 0.5) * 2;
@@ -89,3 +89,38 @@ if (muteBtn) {
     // Set initial icon
     muteBtn.innerHTML = `<img src="img/mute.png" alt="Mute" style="height:1em;vertical-align:middle;">`;
 }
+
+
+const fishEls = Array.from(document.querySelectorAll('[id^="fish"]'));
+fishEls.forEach(fish => {
+    fish.style.position = 'absolute';
+    const maxX = window.innerWidth - fish.offsetWidth;
+    const maxY = window.innerHeight - fish.offsetHeight;
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+    fish.style.left = `${x}px`;
+    fish.style.top = `${y}px`;
+});
+
+fishEls.forEach(fish => {
+    let direction = Math.random() < 0.5 ? 1 : -1;
+    let speed = 1 + Math.random() * 2;
+    let x = parseFloat(fish.style.left) || 0;
+    let maxX = window.innerWidth - fish.offsetWidth;
+
+    function moveFish() {
+        x += direction * speed;
+        if (x <= 0) {
+            direction = 1;
+            fish.style.transform = 'scaleX(1)';
+        } else if (x >= maxX) {
+            direction = -1;
+            fish.style.transform = 'scaleX(-1)';
+        }
+        fish.style.left = `${x}px`;
+        requestAnimationFrame(moveFish);
+    }
+    // Flip image if going left
+    fish.style.transform = direction === 1 ? 'scaleX(1)' : 'scaleX(-1)';
+    moveFish();
+});
